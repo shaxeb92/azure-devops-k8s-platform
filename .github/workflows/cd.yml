@@ -1,0 +1,21 @@
+name: CD Deploy to Minikube
+
+on:
+  workflow_run:
+    workflows: ["CI Build Scan Push"]
+    types: [completed]
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: self-hosted
+
+    steps:
+      - name: Deploy image to Minikube
+        run: |
+          kubectl set image deployment/devops-backend devops-backend=ghcr.io/${{ github.repository_owner }}/devops-backend:${{ github.event.workflow_run.head_sha }}
+          kubectl rollout status deployment/devops-backend
