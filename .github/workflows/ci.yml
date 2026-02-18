@@ -33,7 +33,7 @@ jobs:
       - name: Build image
         run: |
           docker build \
-            -f ./docker/backend.Dockerfile \
+            -f ./docker/backend.dockerfile \
             -t ghcr.io/${{ github.repository_owner }}/devops-backend:${{ github.sha }} \
             -t ghcr.io/${{ github.repository_owner }}/devops-backend:latest \
             .
