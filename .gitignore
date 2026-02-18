@@ -1,1 +1,19 @@
 app/backend/node_modules/
+
+# Terraform
+**/.terraform/*
+**/*.tfstate
+**/*.tfstate.*
+crash.log
+crash.*.log
+
+# Terraform vars
+*.tfvars
+*.tfvars.json
+
+# Node
+**/node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
